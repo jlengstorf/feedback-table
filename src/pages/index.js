@@ -42,6 +42,7 @@ export default ({ data }) => {
                   d.url.replace(/https:\/\/(www\.)?gatsbyjs.org/, ""),
                 filterMethod: (filter, row) =>
                   row[filter.id].includes(filter.value),
+                minWidth: 300,
               },
               {
                 Header: "Rating",
@@ -53,22 +54,37 @@ export default ({ data }) => {
               },
               {
                 Header: "Comment",
-                accessor: "comment",
+                id: "comment",
+                accessor: d => (
+                  <span
+                    style={{
+                      display: "block",
+                      whiteSpace: "normal",
+                    }}
+                  >
+                    {d.comment}
+                  </span>
+                ),
                 aggregate: () => 1,
                 Aggregated: () => <span>expand to read comments</span>,
                 filterable: false,
+                minWidth: 300,
               },
               {
                 Header: "Date",
                 id: "date",
-                accessor: d => d.date.toLocaleDateString(),
+                width: 150,
+                accessor: d => d.date.toISOString().split("T")[0],
                 aggregate: vals =>
                   vals
                     .map(d => new Date(d))
                     .sort((a, b) => b.getTime() - a.getTime())[0]
-                    .toLocaleDateString(),
-                Aggregated: row => <span>Last updated: {row.value}</span>,
+                    .toISOString()
+                    .split("T")[0],
+                Aggregated: row => <span>Updated {row.value}</span>,
                 filterable: false,
+                sortMethod: (a, b) =>
+                  new Date(b).getTime() - new Date(a).getTime(),
               },
             ],
           },
