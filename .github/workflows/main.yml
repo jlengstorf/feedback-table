@@ -1,0 +1,14 @@
+name: Rebuild
+
+on:
+  schedule:
+  - cron: */5 * * * *
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: netlify/actions/build@master
+      secrets: ["GITHUB_TOKEN", "NETLIFY_SITE_ID"]
