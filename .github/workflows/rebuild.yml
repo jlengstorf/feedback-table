@@ -12,5 +12,5 @@ jobs:
     steps:
     - uses: netlify/actions/build@master
       env:
-      - GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - NETLIFY_SITE_ID: 59ea48a5-7e88-45ea-852d-f6ea878a7fc4
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NETLIFY_SITE_ID: 59ea48a5-7e88-45ea-852d-f6ea878a7fc4
