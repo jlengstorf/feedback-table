@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: netlify/actions/build@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NETLIFY_SITE_ID: 59ea48a5-7e88-45ea-852d-f6ea878a7fc4
+    - name: Call a webhook
+      run: |
+        curl -X POST -d {} https://api.netlify.com/build_hooks/5d55d1a6ef28b9f0575cebd7
